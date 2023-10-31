@@ -1,26 +1,32 @@
+/* Name: Emily Chen
+ * Email: ekchen@scu.edu
+ * Student ID: 00001649289
+ *
+ * Assignment: COEN 79 HW 6
+ * File 1 of 7
+ */
+
+#ifndef VECTORCLASSH
+#define VECTORCLASSH
+#include "student.h"
+#include <vector>
+
 namespace coen79 {
-    class Student {
-	public:
-	    int id;
-	    Student() : id(0) {}
-	    Student(int i): id{i} {}
-
-	friend ostream& operator<<(ostream& os, const Student &s);
-    };
-
     class SCUClass {
-    public:
-	const size_t NSTUDENTS = 30;
-	SCUClass();
-	const Student &list();
-	void addStudent();
-	void erase();
+	public:
+	    SCUClass() {}
+	    ~SCUClass() {}
 
-    friend ostream& operator<<(ostream& os, const SCUClass &);
-
-    private:
-	const size_t ID_SIZE = 6;
-	Student students[30];
-	int next;
+	    void insert(const Student &student);
+	    void remove(const Student &student);
+	    void traverse(int(*process)(const int, Student &, void *), void *p);
+	    std::vector<Student> info;
     };
+
+    std::ostream& operator<<(std::ostream& os, const coen79::Student& student);
+
+    //Test function. This is declaration only
+    int testVectorClass();
 }
+
+#endif //VECTORCLASSH
